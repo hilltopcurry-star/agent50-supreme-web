@@ -1,0 +1,21 @@
+# AGENT 50 - LIGHT REQUIREMENTS (C++ build tools کے بغیر)
+flask==2.3.3
+flask-cors==4.0.0
+flask-socketio==5.3.6
+flask-sqlalchemy==3.0.5
+sqlalchemy==2.0.23
+python-dotenv==1.0.0
+requests==2.31.0
+websockets==12.0
+python-socketio==5.10.0
+eventlet==0.33.3
+jinja2==3.1.2
+wtforms==3.1.2
+email-validator==2.1.0
+pyjwt==2.8.0
+bcrypt==4.1.2
+numpy==1.24.3
+opencv-python==4.9.0.80
+pillow==10.2.0
+gunicorn==21.2.0
+# scikit-learn کو عارضی طور پر چھوڑ دیا
