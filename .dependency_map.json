@@ -1,0 +1,762 @@
+{
+  "project": "supreme_delivery_app",
+  "timestamp": "2025-12-17T20:07:55.631534",
+  "file_analyses": {
+    "state_machine.py": {
+      "filename": "state_machine.py",
+      "imports": [
+        "from models import ['Order', 'OrderItem', 'Product']",
+        "from extensions import ['db']"
+      ],
+      "imported_modules": [
+        "models",
+        "extensions"
+      ],
+      "imported_entities": {
+        "models": [
+          "Order",
+          "OrderItem",
+          "Product"
+        ],
+        "extensions": [
+          "db"
+        ]
+      },
+      "defined_entities": [
+        "class:OrderStateMachine",
+        "variable:TRANSITIONS",
+        "function:transition",
+        "function:hold_inventory",
+        "function:release_inventory",
+        "variable:product",
+        "variable:product"
+      ],
+      "local_dependencies": [
+        "models",
+        "extensions"
+      ],
+      "package_dependencies": [],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 54,
+      "has_syntax_errors": false
+    },
+    "config.py": {
+      "filename": "config.py",
+      "imports": [
+        "import os"
+      ],
+      "imported_modules": [
+        "os"
+      ],
+      "imported_entities": {
+        "os": [
+          "*"
+        ]
+      },
+      "defined_entities": [
+        "class:Config",
+        "variable:SECRET_KEY",
+        "variable:SQLALCHEMY_DATABASE_URI",
+        "variable:SQLALCHEMY_TRACK_MODIFICATIONS",
+        "variable:JWT_SECRET_KEY",
+        "variable:STRIPE_SECRET_KEY",
+        "variable:STRIPE_WEBHOOK_SECRET"
+      ],
+      "local_dependencies": [],
+      "package_dependencies": [
+        "os"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 9,
+      "has_syntax_errors": false
+    },
+    "app.py": {
+      "filename": "app.py",
+      "imports": [
+        "from extensions import ['db', 'migrate', 'bootstrap', 'moment']",
+        "from flask import ['Flask']",
+        "from socketio_handler import ['socketio']",
+        "import payment_handler",
+        "from config import ['Config']",
+        "from routes import ['routes_bp']"
+      ],
+      "imported_modules": [
+        "extensions",
+        "flask",
+        "socketio_handler",
+        "payment_handler",
+        "config",
+        "routes"
+      ],
+      "imported_entities": {
+        "extensions": [
+          "db",
+          "migrate",
+          "bootstrap",
+          "moment"
+        ],
+        "flask": [
+          "Flask"
+        ],
+        "socketio_handler": [
+          "socketio"
+        ],
+        "payment_handler": [
+          "*"
+        ],
+        "config": [
+          "Config"
+        ],
+        "routes": [
+          "routes_bp"
+        ]
+      },
+      "defined_entities": [
+        "function:create_app",
+        "variable:app",
+        "variable:app"
+      ],
+      "local_dependencies": [
+        "extensions",
+        "socketio_handler",
+        "payment_handler",
+        "config",
+        "routes"
+      ],
+      "package_dependencies": [
+        "flask"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 33,
+      "has_syntax_errors": false
+    },
+    "routes.py": {
+      "filename": "routes.py",
+      "imports": [
+        "from flask import ['Flask', 'render_template', 'redirect', 'url_for', 'request', 'session', 'Blueprint', 'flash']",
+        "from extensions import ['db']",
+        "from models import ['User', 'Product', 'Order']",
+        "from cart_manager import ['CartManager']",
+        "from state_machine import ['OrderStateMachine']",
+        "from functools import ['wraps']",
+        "import bcrypt"
+      ],
+      "imported_modules": [
+        "flask",
+        "extensions",
+        "models",
+        "cart_manager",
+        "state_machine",
+        "functools",
+        "bcrypt"
+      ],
+      "imported_entities": {
+        "flask": [
+          "Flask",
+          "render_template",
+          "redirect",
+          "url_for",
+          "request",
+          "session",
+          "Blueprint",
+          "flash"
+        ],
+        "extensions": [
+          "db"
+        ],
+        "models": [
+          "User",
+          "Product",
+          "Order"
+        ],
+        "cart_manager": [
+          "CartManager"
+        ],
+        "state_machine": [
+          "OrderStateMachine"
+        ],
+        "functools": [
+          "wraps"
+        ],
+        "bcrypt": [
+          "*"
+        ]
+      },
+      "defined_entities": [
+        "variable:main_bp",
+        "function:login_required",
+        "function:index",
+        "function:register",
+        "function:login",
+        "function:logout",
+        "function:profile",
+        "function:cart",
+        "function:add_to_cart",
+        "function:remove_from_cart",
+        "function:clear_cart",
+        "function:checkout",
+        "function:orders",
+        "function:decorated_function",
+        "variable:products",
+        "variable:user",
+        "variable:cart_manager",
+        "variable:cart_items",
+        "variable:total",
+        "variable:cart_manager",
+        "variable:cart_manager",
+        "variable:cart_manager",
+        "variable:cart_manager",
+        "variable:cart_items",
+        "variable:total",
+        "variable:user_id",
+        "variable:orders",
+        "variable:username",
+        "variable:email",
+        "variable:password",
+        "variable:hashed_password",
+        "variable:new_user",
+        "variable:username",
+        "variable:password",
+        "variable:user"
+      ],
+      "local_dependencies": [
+        "extensions",
+        "models",
+        "cart_manager",
+        "state_machine"
+      ],
+      "package_dependencies": [
+        "flask",
+        "functools",
+        "bcrypt"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 121,
+      "has_syntax_errors": false
+    },
+    "extensions.py": {
+      "filename": "extensions.py",
+      "imports": [
+        "from flask_sqlalchemy import ['SQLAlchemy']",
+        "from flask_migrate import ['Migrate']",
+        "from flask_jwt_extended import ['JWTManager']",
+        "from flask_cors import ['CORS']",
+        "from flask_socketio import ['SocketIO']",
+        "from flask_bootstrap import ['Bootstrap']"
+      ],
+      "imported_modules": [
+        "flask_sqlalchemy",
+        "flask_migrate",
+        "flask_jwt_extended",
+        "flask_cors",
+        "flask_socketio",
+        "flask_bootstrap"
+      ],
+      "imported_entities": {
+        "flask_sqlalchemy": [
+          "SQLAlchemy"
+        ],
+        "flask_migrate": [
+          "Migrate"
+        ],
+        "flask_jwt_extended": [
+          "JWTManager"
+        ],
+        "flask_cors": [
+          "CORS"
+        ],
+        "flask_socketio": [
+          "SocketIO"
+        ],
+        "flask_bootstrap": [
+          "Bootstrap"
+        ]
+      },
+      "defined_entities": [
+        "variable:db",
+        "variable:migrate",
+        "variable:jwt",
+        "variable:cors",
+        "variable:socketio",
+        "variable:bootstrap",
+        "function:init_extensions"
+      ],
+      "local_dependencies": [],
+      "package_dependencies": [
+        "flask_sqlalchemy",
+        "flask_migrate",
+        "flask_jwt_extended",
+        "flask_cors",
+        "flask_socketio",
+        "flask_bootstrap"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 22,
+      "has_syntax_errors": false
+    },
+    "models.py": {
+      "filename": "models.py",
+      "imports": [
+        "from extensions import ['db']",
+        "from sqlalchemy.orm import ['relationship']",
+        "from sqlalchemy import ['Column', 'Integer', 'String', 'Float', 'Boolean', 'DateTime', 'ForeignKey']",
+        "from datetime import ['datetime']"
+      ],
+      "imported_modules": [
+        "extensions",
+        "sqlalchemy.orm",
+        "sqlalchemy",
+        "datetime"
+      ],
+      "imported_entities": {
+        "extensions": [
+          "db"
+        ],
+        "sqlalchemy.orm": [
+          "relationship"
+        ],
+        "sqlalchemy": [
+          "Column",
+          "Integer",
+          "String",
+          "Float",
+          "Boolean",
+          "DateTime",
+          "ForeignKey"
+        ],
+        "datetime": [
+          "datetime"
+        ]
+      },
+      "defined_entities": [
+        "class:User",
+        "class:Product",
+        "class:Order",
+        "class:Transaction",
+        "class:InventoryLog",
+        "class:OrderStateChange",
+        "variable:id",
+        "variable:username",
+        "variable:email",
+        "variable:password_hash",
+        "variable:role",
+        "variable:lat",
+        "variable:lng",
+        "variable:is_available",
+        "function:__repr__",
+        "variable:id",
+        "variable:name",
+        "variable:price",
+        "variable:stock_quantity",
+        "variable:description",
+        "function:__repr__",
+        "variable:id",
+        "variable:customer_id",
+        "variable:customer",
+        "variable:status",
+        "variable:total_amount",
+        "variable:delivery_fee",
+        "variable:delivery_lat",
+        "variable:delivery_lng",
+        "variable:order_date",
+        "function:__repr__",
+        "variable:id",
+        "variable:stripe_payment_intent_id",
+        "variable:amount",
+        "variable:status",
+        "variable:order_id",
+        "variable:order",
+        "function:__repr__",
+        "variable:id",
+        "variable:product_id",
+        "variable:product",
+        "variable:quantity_change",
+        "variable:reason",
+        "variable:timestamp",
+        "function:__repr__",
+        "variable:id",
+        "variable:order_id",
+        "variable:order",
+        "variable:from_state",
+        "variable:to_state",
+        "variable:changed_by",
+        "variable:changed_by_user",
+        "variable:timestamp",
+        "function:__repr__"
+      ],
+      "local_dependencies": [
+        "extensions"
+      ],
+      "package_dependencies": [
+        "sqlalchemy.orm",
+        "sqlalchemy",
+        "datetime"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 76,
+      "has_syntax_errors": false
+    },
+    "geolocation.py": {
+      "filename": "geolocation.py",
+      "imports": [
+        "import math",
+        "from models import ['Driver']"
+      ],
+      "imported_modules": [
+        "math",
+        "models"
+      ],
+      "imported_entities": {
+        "math": [
+          "*"
+        ],
+        "models": [
+          "Driver"
+        ]
+      },
+      "defined_entities": [
+        "class:GeoLocationService",
+        "function:haversine_distance",
+        "function:calculate_delivery_fee",
+        "function:find_nearby_drivers",
+        "variable:R",
+        "variable:lat1_rad",
+        "variable:lon1_rad",
+        "variable:lat2_rad",
+        "variable:lon2_rad",
+        "variable:delta_lat",
+        "variable:delta_lon",
+        "variable:a",
+        "variable:c",
+        "variable:distance",
+        "variable:base_fee",
+        "variable:per_km_fee",
+        "variable:delivery_fee",
+        "variable:nearby_drivers",
+        "variable:available_drivers",
+        "variable:distance"
+      ],
+      "local_dependencies": [
+        "models"
+      ],
+      "package_dependencies": [
+        "math"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 51,
+      "has_syntax_errors": false
+    },
+    "api_routes.py": {
+      "filename": "api_routes.py",
+      "imports": [
+        "from flask import ['Blueprint', 'request', 'jsonify', 'session']",
+        "from models import ['User', 'Order']",
+        "from extensions import ['db']",
+        "from functools import ['wraps']"
+      ],
+      "imported_modules": [
+        "flask",
+        "models",
+        "extensions",
+        "functools"
+      ],
+      "imported_entities": {
+        "flask": [
+          "Blueprint",
+          "request",
+          "jsonify",
+          "session"
+        ],
+        "models": [
+          "User",
+          "Order"
+        ],
+        "extensions": [
+          "db"
+        ],
+        "functools": [
+          "wraps"
+        ]
+      },
+      "defined_entities": [
+        "variable:api_bp",
+        "function:login_required",
+        "function:login",
+        "function:logout",
+        "function:get_orders",
+        "function:decorated_function",
+        "variable:data",
+        "variable:username",
+        "variable:password",
+        "variable:user",
+        "variable:user_id",
+        "variable:user",
+        "variable:orders",
+        "variable:order_list",
+        "variable:order_data"
+      ],
+      "local_dependencies": [
+        "models",
+        "extensions"
+      ],
+      "package_dependencies": [
+        "flask",
+        "functools"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 61,
+      "has_syntax_errors": false
+    },
+    "socketio_handler.py": {
+      "filename": "socketio_handler.py",
+      "imports": [
+        "from flask_socketio import ['SocketIO', 'emit', 'disconnect']",
+        "from flask import ['session']",
+        "from models import ['User', 'Driver', 'Order']",
+        "from extensions import ['db']",
+        "import json"
+      ],
+      "imported_modules": [
+        "flask_socketio",
+        "flask",
+        "models",
+        "extensions",
+        "json"
+      ],
+      "imported_entities": {
+        "flask_socketio": [
+          "SocketIO",
+          "emit",
+          "disconnect"
+        ],
+        "flask": [
+          "session"
+        ],
+        "models": [
+          "User",
+          "Driver",
+          "Order"
+        ],
+        "extensions": [
+          "db"
+        ],
+        "json": [
+          "*"
+        ]
+      },
+      "defined_entities": [
+        "variable:socketio",
+        "function:init_socketio",
+        "function:connect_handler",
+        "function:handle_driver_location_update",
+        "function:emit_order_status_change",
+        "variable:user_id",
+        "variable:user",
+        "variable:driver_id",
+        "variable:latitude",
+        "variable:longitude",
+        "variable:driver",
+        "variable:order"
+      ],
+      "local_dependencies": [
+        "models",
+        "extensions"
+      ],
+      "package_dependencies": [
+        "flask_socketio",
+        "flask",
+        "json"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 61,
+      "has_syntax_errors": false
+    },
+    "payment_handler.py": {
+      "filename": "payment_handler.py",
+      "imports": [
+        "import stripe",
+        "from flask import ['Flask', 'Blueprint', 'request', 'jsonify', 'current_app']",
+        "from models import ['Order']",
+        "from extensions import ['db']",
+        "from config import ['Config']"
+      ],
+      "imported_modules": [
+        "stripe",
+        "flask",
+        "models",
+        "extensions",
+        "config"
+      ],
+      "imported_entities": {
+        "stripe": [
+          "*"
+        ],
+        "flask": [
+          "Flask",
+          "Blueprint",
+          "request",
+          "jsonify",
+          "current_app"
+        ],
+        "models": [
+          "Order"
+        ],
+        "extensions": [
+          "db"
+        ],
+        "config": [
+          "Config"
+        ]
+      },
+      "defined_entities": [
+        "variable:payment_bp",
+        "class:PaymentManager",
+        "variable:payment_manager",
+        "function:on_load",
+        "function:create_checkout",
+        "function:webhook",
+        "function:__init__",
+        "function:create_checkout_session",
+        "function:handle_webhook",
+        "function:fulfill_order",
+        "variable:payment_manager",
+        "variable:user_id",
+        "variable:payload",
+        "variable:sig_header",
+        "variable:order",
+        "variable:line_items",
+        "variable:session",
+        "variable:event",
+        "variable:session",
+        "variable:order_id",
+        "variable:order"
+      ],
+      "local_dependencies": [
+        "models",
+        "extensions",
+        "config"
+      ],
+      "package_dependencies": [
+        "stripe",
+        "flask"
+      ],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 101,
+      "has_syntax_errors": false
+    },
+    "cart_manager.py": {
+      "filename": "cart_manager.py",
+      "imports": [
+        "from models import ['Cart', 'CartItem', 'Product', 'Order', 'OrderItem', 'db']"
+      ],
+      "imported_modules": [
+        "models"
+      ],
+      "imported_entities": {
+        "models": [
+          "Cart",
+          "CartItem",
+          "Product",
+          "Order",
+          "OrderItem",
+          "db"
+        ]
+      },
+      "defined_entities": [
+        "class:CartManager",
+        "function:get_or_create_cart",
+        "function:add_to_cart",
+        "function:convert_cart_to_order",
+        "variable:cart",
+        "variable:cart",
+        "variable:product",
+        "variable:cart_item",
+        "variable:cart",
+        "variable:user_id",
+        "variable:order",
+        "variable:cart",
+        "variable:cart_item",
+        "variable:order_item"
+      ],
+      "local_dependencies": [
+        "models"
+      ],
+      "package_dependencies": [],
+      "missing_dependencies": [],
+      "pattern_violations": [],
+      "line_count": 70,
+      "has_syntax_errors": false
+    }
+  },
+  "circular_dependencies": [],
+  "missing_dependencies": [],
+  "structural_issues": [
+    {
+      "file": "app.py",
+      "issue": "Imports from extensions but should only import from: extensions.py, config.py, routes.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "app.py",
+      "issue": "Imports from socketio_handler but should only import from: extensions.py, config.py, routes.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "app.py",
+      "issue": "Imports from payment_handler but should only import from: extensions.py, config.py, routes.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "app.py",
+      "issue": "Imports from config but should only import from: extensions.py, config.py, routes.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "app.py",
+      "issue": "Imports from routes but should only import from: extensions.py, config.py, routes.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "routes.py",
+      "issue": "Imports from extensions but should only import from: extensions.py, models.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "routes.py",
+      "issue": "Imports from models but should only import from: extensions.py, models.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "routes.py",
+      "issue": "Imports from cart_manager but should only import from: extensions.py, models.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "routes.py",
+      "issue": "Imports from state_machine but should only import from: extensions.py, models.py",
+      "severity": "WARNING"
+    },
+    {
+      "file": "models.py",
+      "issue": "Imports from extensions but should only import from: extensions.py",
+      "severity": "WARNING"
+    }
+  ],
+  "graph_summary": {
+    "nodes": 11,
+    "edges": 0,
+    "density": 0,
+    "is_dag": true,
+    "connected_components": 11
+  }
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "hash": "cfaa4fc168545ec0",
+    "message": "",
+    "type": "llm_healing_required",
+    "filename": "app.py",
+    "phase": "QA_LOOP",
+    "timestamp": "2025-12-17T20:07:35.369344",
+    "project": "supreme_delivery_app",
+    "fixed": true,
+    "fix_applied": "llm_healing_with_refactoring",
+    "repeated": false,
+    "auto_fixed": false,
+    "fixed_timestamp": "2025-12-17T20:07:54.614785"
+  },
+  {
+    "hash": "cfaa4fc168545ec0",
+    "message": "",
+    "type": "llm_healing_required",
+    "filename": "app.py",
+    "phase": "QA_LOOP",
+    "timestamp": "2025-12-17T20:07:50.668901",
+    "project": "supreme_delivery_app",
+    "fixed": false,
+    "fix_applied": null,
+    "repeated": true,
+    "auto_fixed": false
+  },
+  {
+    "hash": "7abac04831695016",
+    "message": "Created missing template: index.html",
+    "type": "template_created",
+    "filename": "index.html",
+    "phase": "HEALING",
+    "timestamp": "2025-12-17T20:07:55.633339",
+    "project": "supreme_delivery_app",
+    "fixed": true,
+    "fix_applied": "auto_created_template",
+    "repeated": false,
+    "auto_fixed": false
+  },
+  {
+    "hash": "f8b84529558e3a9a",
+    "message": "Created missing template: login.html",
+    "type": "template_created",
+    "filename": "login.html",
+    "phase": "HEALING",
+    "timestamp": "2025-12-17T20:07:55.634404",
+    "project": "supreme_delivery_app",
+    "fixed": true,
+    "fix_applied": "auto_created_template",
+    "repeated": false,
+    "auto_fixed": false
+  }
+]

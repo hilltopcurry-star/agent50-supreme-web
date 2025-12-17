@@ -1,0 +1,107 @@
+{
+  "import_errors": {
+    "Bootstrap5_not_found": {
+      "pattern": "cannot import name 'Bootstrap5'",
+      "solution": "Use 'Bootstrap' instead of 'Bootstrap5'",
+      "prevention": "Never use Bootstrap5 in any code",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": true
+    },
+    "bp_not_found": {
+      "pattern": "cannot import name 'bp'",
+      "solution": "Use 'main_bp' instead of 'bp'",
+      "prevention": "Always name blueprint 'main_bp'",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": true
+    },
+    "flask_login_missing": {
+      "pattern": "No module named 'flask_login'",
+      "solution": "Use session-based authentication",
+      "prevention": "Never import flask_login",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": true
+    },
+    "main_import_error": {
+      "pattern": "cannot import name 'main_bp' from 'main'",
+      "solution": "Import from 'routes' not 'main'",
+      "prevention": "Use 'from routes import main_bp'",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": true
+    }
+  },
+  "runtime_errors": {
+    "template_not_found": {
+      "pattern": "jinja2.exceptions.TemplateNotFound",
+      "solution": "Create missing template file",
+      "prevention": "Ensure all templates exist before running",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": true
+    },
+    "app_context_error": {
+      "pattern": "Working outside of application context",
+      "solution": "Initialize db within app context",
+      "prevention": "Use create_app() pattern correctly",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": true
+    },
+    "method_not_allowed": {
+      "pattern": "405 Method Not Allowed",
+      "solution": "Add methods=['GET', 'POST'] to route",
+      "prevention": "Always specify HTTP methods",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": true
+    },
+    "pattern_4": {
+      "pattern": "Created missing template: index.html",
+      "solution": "Auto-detected by Agent 50",
+      "prevention": "To be determined",
+      "occurrences": 1,
+      "first_seen": "2025-12-17T20:07:55.633543",
+      "last_seen": "2025-12-17T20:07:55.633549",
+      "auto_fixable": false
+    },
+    "pattern_5": {
+      "pattern": "Created missing template: login.html",
+      "solution": "Auto-detected by Agent 50",
+      "prevention": "To be determined",
+      "occurrences": 1,
+      "first_seen": "2025-12-17T20:07:55.634437",
+      "last_seen": "2025-12-17T20:07:55.634440",
+      "auto_fixable": false
+    }
+  },
+  "structural_errors": {
+    "circular_import": {
+      "pattern": "ImportError: cannot import name",
+      "solution": "Break circular dependency",
+      "prevention": "Avoid mutual imports between files",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": false
+    },
+    "missing_dependency": {
+      "pattern": "ModuleNotFoundError",
+      "solution": "Install missing package",
+      "prevention": "Check imports before generation",
+      "occurrences": 0,
+      "first_seen": null,
+      "last_seen": null,
+      "auto_fixable": true
+    }
+  }
+}

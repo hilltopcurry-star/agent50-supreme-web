@@ -1,0 +1,408 @@
+{
+  "total_files": 24,
+  "python_files": 11,
+  "template_files": 4,
+  "config_files": 1,
+  "all_files": [
+    {
+      "name": ".qa_loop_counter",
+      "path": ".qa_loop_counter",
+      "full_path": "projects/supreme_delivery_app/.qa_loop_counter",
+      "size": 1,
+      "extension": "",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": ".error_database.json",
+      "path": ".error_database.json",
+      "full_path": "projects/supreme_delivery_app/.error_database.json",
+      "size": 727,
+      "extension": ".json",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "state_machine.py",
+      "path": "state_machine.py",
+      "full_path": "projects/supreme_delivery_app/state_machine.py",
+      "size": 1754,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": ".file_awareness_memory.json",
+      "path": ".file_awareness_memory.json",
+      "full_path": "projects/supreme_delivery_app/.file_awareness_memory.json",
+      "size": 11444,
+      "extension": ".json",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": ".validation_history.json",
+      "path": ".validation_history.json",
+      "full_path": "projects/supreme_delivery_app/.validation_history.json",
+      "size": 3208,
+      "extension": ".json",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": ".refactoring_history.json",
+      "path": ".refactoring_history.json",
+      "full_path": "projects/supreme_delivery_app/.refactoring_history.json",
+      "size": 0,
+      "extension": ".json",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "config.py",
+      "path": "config.py",
+      "full_path": "projects/supreme_delivery_app/config.py",
+      "size": 589,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": true
+    },
+    {
+      "name": "app.py",
+      "path": "app.py",
+      "full_path": "projects/supreme_delivery_app/app.py",
+      "size": 744,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": ".dependency_map.json",
+      "path": ".dependency_map.json",
+      "full_path": "projects/supreme_delivery_app/.dependency_map.json",
+      "size": 19309,
+      "extension": ".json",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "qa_report.json",
+      "path": "qa_report.json",
+      "full_path": "projects/supreme_delivery_app/qa_report.json",
+      "size": 51,
+      "extension": ".json",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "routes.py",
+      "path": "routes.py",
+      "full_path": "projects/supreme_delivery_app/routes.py",
+      "size": 3970,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "extensions.py",
+      "path": "extensions.py",
+      "full_path": "projects/supreme_delivery_app/extensions.py",
+      "size": 561,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "models.py",
+      "path": "models.py",
+      "full_path": "projects/supreme_delivery_app/models.py",
+      "size": 3387,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "geolocation.py",
+      "path": "geolocation.py",
+      "full_path": "projects/supreme_delivery_app/geolocation.py",
+      "size": 1719,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "api_routes.py",
+      "path": "api_routes.py",
+      "full_path": "projects/supreme_delivery_app/api_routes.py",
+      "size": 1853,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "socketio_handler.py",
+      "path": "socketio_handler.py",
+      "full_path": "projects/supreme_delivery_app/socketio_handler.py",
+      "size": 1900,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": ".constraint_violations.json",
+      "path": ".constraint_violations.json",
+      "full_path": "projects/supreme_delivery_app/.constraint_violations.json",
+      "size": 9343,
+      "extension": ".json",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "payment_handler.py",
+      "path": "payment_handler.py",
+      "full_path": "projects/supreme_delivery_app/payment_handler.py",
+      "size": 3711,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "cart_manager.py",
+      "path": "cart_manager.py",
+      "full_path": "projects/supreme_delivery_app/cart_manager.py",
+      "size": 2325,
+      "extension": ".py",
+      "is_python": true,
+      "is_template": false,
+      "is_config": false
+    },
+    {
+      "name": "checkout.html",
+      "path": "templates/checkout.html",
+      "full_path": "projects/supreme_delivery_app/templates/checkout.html",
+      "size": 2219,
+      "extension": ".html",
+      "is_python": false,
+      "is_template": true,
+      "is_config": false
+    },
+    {
+      "name": "dashboard_admin.html",
+      "path": "templates/dashboard_admin.html",
+      "full_path": "projects/supreme_delivery_app/templates/dashboard_admin.html",
+      "size": 4157,
+      "extension": ".html",
+      "is_python": false,
+      "is_template": true,
+      "is_config": false
+    },
+    {
+      "name": "tracking.html",
+      "path": "templates/tracking.html",
+      "full_path": "projects/supreme_delivery_app/templates/tracking.html",
+      "size": 3307,
+      "extension": ".html",
+      "is_python": false,
+      "is_template": true,
+      "is_config": false
+    },
+    {
+      "name": "base.html",
+      "path": "templates/base.html",
+      "full_path": "projects/supreme_delivery_app/templates/base.html",
+      "size": 2484,
+      "extension": ".html",
+      "is_python": false,
+      "is_template": true,
+      "is_config": false
+    },
+    {
+      "name": "extensions.cpython-313.pyc",
+      "path": "__pycache__/extensions.cpython-313.pyc",
+      "full_path": "projects/supreme_delivery_app/__pycache__/extensions.cpython-313.pyc",
+      "size": 1116,
+      "extension": ".pyc",
+      "is_python": false,
+      "is_template": false,
+      "is_config": false
+    }
+  ],
+  "python_file_names": [
+    "state_machine.py",
+    "config.py",
+    "app.py",
+    "routes.py",
+    "extensions.py",
+    "models.py",
+    "geolocation.py",
+    "api_routes.py",
+    "socketio_handler.py",
+    "payment_handler.py",
+    "cart_manager.py"
+  ],
+  "template_file_names": [
+    "templates/checkout.html",
+    "templates/dashboard_admin.html",
+    "templates/tracking.html",
+    "templates/base.html"
+  ],
+  "critical_files": {
+    "existing": {
+      "config.py": true,
+      "extensions.py": true,
+      "models.py": true,
+      "routes.py": true,
+      "app.py": true,
+      "templates/base.html": true
+    },
+    "missing": {
+      "__init__.py": "MISSING",
+      "templates/index.html": "MISSING",
+      "templates/login.html": "MISSING",
+      "templates/layout.html": "MISSING"
+    },
+    "critical_count": 6,
+    "missing_count": 4
+  },
+  "import_analysis": {
+    "imports_by_file": {
+      "state_machine.py": {
+        "imports": [
+          "from models import Order, OrderItem, Product",
+          "from extensions import db"
+        ],
+        "problems": [],
+        "line_count": 54
+      },
+      "config.py": {
+        "imports": [
+          "import os"
+        ],
+        "problems": [],
+        "line_count": 9
+      },
+      "app.py": {
+        "imports": [
+          "from extensions import db, migrate, bootstrap, moment",
+          "from flask import Flask",
+          "from socketio_handler import socketio",
+          "import payment_handler  # Import to initialize",
+          "from config import Config",
+          "from routes import routes_bp"
+        ],
+        "problems": [
+          "Importing 'bp' but should be 'main_bp'"
+        ],
+        "line_count": 31
+      },
+      "routes.py": {
+        "imports": [
+          "from flask import Flask, render_template, redirect, url_for, request, session, Blueprint, flash",
+          "from extensions import db",
+          "from models import User, Product, Order",
+          "from cart_manager import CartManager",
+          "from state_machine import OrderStateMachine",
+          "from functools import wraps",
+          "import bcrypt"
+        ],
+        "problems": [],
+        "line_count": 121
+      },
+      "extensions.py": {
+        "imports": [
+          "from flask_sqlalchemy import SQLAlchemy",
+          "from flask_migrate import Migrate",
+          "from flask_jwt_extended import JWTManager",
+          "from flask_cors import CORS",
+          "from flask_socketio import SocketIO",
+          "from flask_bootstrap import Bootstrap  # Ensure this is 'Bootstrap', not 'Bootstrap'"
+        ],
+        "problems": [],
+        "line_count": 22
+      },
+      "models.py": {
+        "imports": [
+          "from extensions import db",
+          "from sqlalchemy.orm import relationship",
+          "from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, ForeignKey",
+          "from datetime import datetime"
+        ],
+        "problems": [],
+        "line_count": 76
+      },
+      "geolocation.py": {
+        "imports": [
+          "import math",
+          "from models import Driver"
+        ],
+        "problems": [],
+        "line_count": 51
+      },
+      "api_routes.py": {
+        "imports": [
+          "from flask import Blueprint, request, jsonify, session",
+          "from models import User, Order",
+          "from extensions import db",
+          "from functools import wraps"
+        ],
+        "problems": [],
+        "line_count": 61
+      },
+      "socketio_handler.py": {
+        "imports": [
+          "from flask_socketio import SocketIO, emit, disconnect",
+          "from flask import session",
+          "from models import User, Driver, Order  # Import necessary models",
+          "from extensions import db",
+          "import json"
+        ],
+        "problems": [],
+        "line_count": 61
+      },
+      "payment_handler.py": {
+        "imports": [
+          "import stripe",
+          "from flask import Flask, Blueprint, request, jsonify, current_app",
+          "from models import Order",
+          "from extensions import db",
+          "from config import Config"
+        ],
+        "problems": [],
+        "line_count": 101
+      },
+      "cart_manager.py": {
+        "imports": [
+          "from models import Cart, CartItem, Product, Order, OrderItem, db"
+        ],
+        "problems": [],
+        "line_count": 70
+      }
+    },
+    "total_errors": 1,
+    "errors": [
+      "Importing 'bp' but should be 'main_bp'"
+    ]
+  },
+  "has_main_py": false,
+  "has_routes_py": true,
+  "has_app_py": true,
+  "scan_timestamp": "1766002055.368697"
+}

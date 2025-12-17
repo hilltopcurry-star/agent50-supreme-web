@@ -1,0 +1,302 @@
+[
+  {
+    "filename": "models.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'sqlalchemy'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'functools'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Flask'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'db'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'User'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'CartManager'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'OrderStateMachine'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'wraps'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'bcrypt'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "INVALID IMPORT: bp \u2192 main_bp (Blueprint should be named main_bp not bp)",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "routes.py",
+    "violation": "STRUCTURE: Use main_bp not bp for blueprint",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Flask'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'db'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Config'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'main_bp'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'socketio'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "INVALID IMPORT: bp \u2192 main_bp (Blueprint should be named main_bp not bp)",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "payment_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'stripe'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "payment_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Flask'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "payment_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Order'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "payment_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'db'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "payment_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Config'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "payment_handler.py",
+    "violation": "INVALID IMPORT: bp \u2192 main_bp (Blueprint should be named main_bp not bp)",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "cart_manager.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Cart'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "socketio_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'flask_socketio'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "socketio_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'SocketIO'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "socketio_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'session'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "socketio_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'User'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "socketio_handler.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'db'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "state_machine.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Order'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "state_machine.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'db'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "geolocation.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Driver'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "api_routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'functools'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "api_routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Blueprint'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "api_routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'User'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "api_routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'db'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "api_routes.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'wraps'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "api_routes.py",
+    "violation": "INVALID IMPORT: bp \u2192 main_bp (Blueprint should be named main_bp not bp)",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Flask'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'db'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Config'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'routes_bp'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'socketio'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "INVALID IMPORT: bp \u2192 main_bp (Blueprint should be named main_bp not bp)",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'db'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Flask'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'socketio'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'Config'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "HALLUCINATION: Imports non-existent module 'routes_bp'",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  },
+  {
+    "filename": "app.py",
+    "violation": "INVALID IMPORT: bp \u2192 main_bp (Blueprint should be named main_bp not bp)",
+    "timestamp": "1766000991.0",
+    "project": "supreme_delivery_app"
+  }
+]
