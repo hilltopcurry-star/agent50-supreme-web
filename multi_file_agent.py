@@ -114,6 +114,59 @@ def save_to_disk(project_name, filename, content):
     print(f"  [SAVE] Saved VALIDATED: {filename}")
     # ========== END NEW VALIDATION CODE ==========
 
+# ==========================================
+# 🚀 NEW SKILL: PUSH TO GITHUB (AUTOMATED)
+# ==========================================
+def push_generated_code_to_github(project_name):
+    print(f"\n[GIT] PHASE 7: PUSHING TO GITHUB BRANCH")
+    
+    # 1. Get Project Path (Output Directory)
+    output_dir = get_project_path(project_name)
+    
+    # 2. Get Env Variables
+    token = os.getenv("GITHUB_TOKEN")
+    repo = os.getenv("GITHUB_REPO")
+    branch = os.getenv("GIT_BRANCH", "live-app")
+
+    if not token or not repo:
+        print("[GIT] ❌ Missing GitHub credentials (GITHUB_TOKEN or GITHUB_REPO)")
+        print("[GIT] Please add them in Render Environment Variables.")
+        return
+
+    # 3. Construct Auth URL
+    repo_url = f"https://{token}@github.com/{repo}.git"
+
+    def run(cmd):
+        # Helper to run commands inside the project folder
+        subprocess.run(cmd, cwd=output_dir, shell=True, check=True)
+
+    try:
+        print("[GIT] Initializing repository in output folder...")
+        # Remove old git if exists to avoid conflicts
+        subprocess.run("rm -rf .git", cwd=output_dir, shell=True)
+        
+        run("git init")
+        run("git config user.email 'agent50@bot.ai'")
+        run("git config user.name 'Agent 50 Bot'")
+
+        print(f"[GIT] Switching to branch: {branch}...")
+        run("git checkout -b " + branch)
+
+        print("[GIT] Adding files...")
+        run("git add .")
+        run("git commit -m 'Auto-generated build by Agent 50'")
+
+        print("[GIT] Pushing to remote...")
+        run(f"git remote add origin {repo_url}")
+        run(f"git push --force origin {branch}")
+
+        print(f"[GIT] ✅ SUCCESS! Code pushed to branch '{branch}'")
+        print(f"[NEXT STEP] Go to Render -> New Web Service -> Repo: {repo} -> Branch: {branch}")
+
+    except Exception as e:
+        print("[GIT] ❌ Push failed:", e)
+
+
 # --- PHASES ---
 
 def phase_plan(project_name, project_type):
@@ -135,24 +188,20 @@ def phase_generate(project_name):
     
     # =========================================================================
     # 🚀 [NEW] DEVELOPER WEEK 2 LOGIC INJECTION
-    # This ensures Payments, Sockets, and State Machines are built FIRST.
     # =========================================================================
     print("  [DEVELOPER MODE] Injecting Phase 2 Logic (Week 2 Specs)...")
     try:
         skill_implement_week_2_architecture(project_name)
     except NameError:
         print("  [WARN] Week 2 Skill not found in agent_skills.py yet. Skipping injection.")
-    # =========================================================================
     
     # ========== NEW: SUPREME VALIDATOR INITIALIZATION ==========
     print("  [VALIDATOR] Initializing Supreme Validator for generation...")
     validator = get_validator(project_name)
-    # ========== END NEW CODE ==========
     
     # ========== NEW: STRUCTURAL MAPPER INITIALIZATION ==========
     print("  [STRUCTURE] Initializing Structural Mapper for generation...")
     struct_mapper = get_structural_mapper(project_name)
-    # ========== END NEW CODE ==========
     
     # ========== NEW: FILE AWARENESS INTEGRATION ==========
     print("  [AWARE] Running Supreme File Awareness...")
@@ -169,7 +218,6 @@ def phase_generate(project_name):
     # Smart decision: main.py or routes.py?
     blueprint_source = should_use_main_or_routes(project_name)
     print(f"  [AWARE] Using blueprint source: {blueprint_source}.py")
-    # ========== END NEW CODE ==========
 
     for item in state_manager.state["files_plan"]:
         if state_manager.is_file_done(item['filename']): continue
@@ -211,11 +259,6 @@ def phase_generate(project_name):
             allowed_imports = dep_patterns.get("imports_from", [])
             if allowed_imports:
                 special_instructions += f"\nSTRUCTURAL: Only import from: {', '.join(allowed_imports)}"
-        # ========== END NEW CODE ==========
-        
-        # =========================================================================
-        # ⭐ INTEGRATION REQUESTED BY DEVELOPER: PROMPT & LLM CONSTRAINT ENFORCEMENT ⭐
-        # =========================================================================
         
         # 1. Prepare Raw Prompt
         raw_prompt = f"PROJECT: {project_name}\nFILE: {item['filename']}\nROLE: {item['role']}\n{special_instructions}\nCONTEXT:\n{context_str}"
@@ -236,8 +279,6 @@ def phase_generate(project_name):
         if corrections:
             print(f"  [CONSTRAINT] Applied {len(corrections)} corrections")
             
-        # =========================================================================
-
         # 5. Save the Constrained Code (Passed to validation)
         print(f"  [VALIDATE] Supreme Validator will check {item['filename']} before saving...")
         save_to_disk(project_name, item['filename'], constrained_code)
@@ -626,69 +667,6 @@ def phase_qa_loop(project_name):
     except Exception as e:
         print(f"  [ERROR] Final check failed: {e}")
 
-# ==========================================
-# 🚀 NEW PHASE: DEPLOYMENT TO RENDER (FIXED)
-# ==========================================
-def phase_deploy_render(project_name):
-    print(f"\n[DEPLOY] PHASE 7: DEPLOYING TO RENDER CLOUD")
-    
-    api_key = os.environ.get("RENDER_API_KEY")
-    if not api_key:
-        print("  [ERROR] RENDER_API_KEY not found in Environment Variables.")
-        return
-
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-    }
-
-    # 1. FETCH OWNER ID
-    print("  [CONNECT] Fetching Account Owner ID...")
-    owner_id = ""
-    try:
-        owner_res = requests.get("https://api.render.com/v1/owners", headers=headers)
-        if owner_res.status_code == 200:
-            owners = owner_res.json()
-            owner_id = owners[0]['owner']['id']
-            print(f"  [SUCCESS] Owner Identified: {owner_id}")
-        else:
-            print(f"  [ERROR] Could not fetch Owner ID: {owner_res.text}")
-            return
-    except Exception as e:
-        print(f"  [ERROR] Connection failed: {e}")
-        return
-
-    # 2. DEPLOY (CORRECTED PAYLOAD STRUCTURE)
-    url = "https://api.render.com/v1/services"
-    payload = {
-        "ownerId": owner_id,  # <--- MOVED TO ROOT (Critical Fix)
-        "type": "web_service",
-        "name": f"{project_name}-live",
-        "repo": "https://github.com/hilltopcurry-star/agent50-supreme-web", 
-        "branch": "main",
-        "serviceDetails": {
-            "buildCommand": "pip install -r requirements.txt",
-            "startCommand": "gunicorn app:app",
-            "plan": "free",
-            "env": "python"
-        }
-    }
-
-    print(f"  [DEPLOY] Launching {project_name} to Production...")
-    try:
-        response = requests.post(url, json=payload, headers=headers)
-        if response.status_code == 201 or response.status_code == 200:
-            data = response.json()
-            print(f"  [SUCCESS] 🚀 DEPLOYMENT STARTED!")
-            print(f"  [LINK] App will be live here: {data.get('serviceUrl', 'Check Dashboard')}")
-            # Agar URL response mein seedha na ho:
-            if 'serviceUrl' not in data:
-                 print(f"  [INFO] App URL available on Render Dashboard.")
-        else:
-            print(f"  [FAIL] Render refused: {response.text}")
-    except Exception as e:
-        print(f"  [ERROR] Deployment crashed: {e}")
 
 def run_agent():
     print("\n" + "="*40)
@@ -786,11 +764,27 @@ def run_agent():
 
     if curr == "QA_LOOP":
         phase_qa_loop(NAME)
+        
+        # ==========================================
+        # 🔥 FINAL STEP: PUSH TO GITHUB AUTOMATICALLY
+        # ==========================================
+        push_generated_code_to_github(NAME)
+        
         state_manager.update_phase("DEPLOY") 
         curr = "DEPLOY" 
 
     if curr == "DEPLOY":
-        phase_deploy_render(NAME)
+        # Ab hum 'deploy' function ko nahi bulayenge kyunki aapko Manual $7 plan lena hai
+        print("\n" + "="*40)
+        print("  ✅ MISSION ACCOMPLISHED: CODE PUSHED TO GITHUB")
+        print("  👉 NEXT STEP: Go to Render Dashboard")
+        print("  1. Click 'New' -> 'Web Service'")
+        print("  2. Select Repo: agent50-supreme-web")
+        print("  3. CRITICAL: Change Branch to 'live-app'")
+        print("  4. Select 'Starter' Plan ($7)")
+        print("  5. Click 'Create Web Service'")
+        print("="*40)
+        
         state_manager.update_phase("COMPLETE")
         print("\n[SUCCESS] AGENT 50 MISSION COMPLETE.")
 
