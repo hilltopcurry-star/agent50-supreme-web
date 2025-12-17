@@ -7,3 +7,7 @@ flask-bootstrap4
 gunicorn
 flask-socketio
 eventlet
+Flask-JWT-Extended
+Flask-Moment
+Flask-Login
+Flask-Bcrypt
