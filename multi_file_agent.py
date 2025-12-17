@@ -676,16 +676,18 @@ def run_agent():
     print("      AGENT 50: SUPREME ARCHITECT      ")
     print("="*40)
 
+    # --- FIX STARTS HERE (EOF ERROR FIX) ---
+    # Humne input() hata diya hai taake Server par crash na ho
+    
     if len(sys.argv) > 1:
         NAME = sys.argv[1].strip()
         print(f"  [INFO] Project Name from CLI: {NAME}")
     else:
-        user_project_name = input("\n[INPUT] Enter Project Name (e.g., supreme_delivery): ").strip()
-        if not user_project_name:
-            NAME = "supreme_delivery_app"
-            print(f"  [WARN] No name entered. Using default: {NAME}")
-        else:
-            NAME = user_project_name.replace(" ", "_")
+        # AUTOMATIC DEFAULT NAME (No asking)
+        NAME = "supreme_delivery_app"
+        print(f"  [AUTO] No input detected. Using default name: {NAME}")
+
+    # --- FIX ENDS HERE ---
 
     TYPE = "food_delivery"
     
@@ -771,8 +773,8 @@ def run_agent():
 
     if curr == "QA_LOOP":
         phase_qa_loop(NAME)
-        state_manager.update_phase("DEPLOY") # <--- Changed
-        curr = "DEPLOY" # <--- Changed
+        state_manager.update_phase("DEPLOY") 
+        curr = "DEPLOY" 
 
     if curr == "DEPLOY":
         phase_deploy_render(NAME)
