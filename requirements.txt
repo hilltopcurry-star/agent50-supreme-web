@@ -11,3 +11,5 @@ Flask-JWT-Extended
 Flask-Moment
 Flask-Login
 Flask-Bcrypt
+stripe
+python-dotenv
