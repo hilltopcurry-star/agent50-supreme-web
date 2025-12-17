@@ -2,7 +2,7 @@ import os
 import time
 import json
 import subprocess
-import requests  # Zaroori hai
+import requests
 from pathlib import Path
 import sys
 from llm_client import call_llm
@@ -643,7 +643,7 @@ def phase_deploy_render(project_name):
         "Content-Type": "application/json"
     }
 
-    # 1. FETCH OWNER ID (Ye Missing Tha!)
+    # 1. FETCH OWNER ID
     print("  [CONNECT] Fetching Account Owner ID...")
     owner_id = ""
     try:
@@ -659,19 +659,19 @@ def phase_deploy_render(project_name):
         print(f"  [ERROR] Connection failed: {e}")
         return
 
-    # 2. DEPLOY WITH OWNER ID
+    # 2. DEPLOY (CORRECTED PAYLOAD STRUCTURE)
     url = "https://api.render.com/v1/services"
     payload = {
+        "ownerId": owner_id,  # <--- MOVED TO ROOT (Critical Fix)
+        "type": "web_service",
+        "name": f"{project_name}-live",
+        "repo": "https://github.com/hilltopcurry-star/agent50-supreme-web", 
+        "branch": "main",
         "serviceDetails": {
-            "type": "web_service",
-            "name": f"{project_name}-live",
-            "ownerId": owner_id,  # <--- CRITICAL FIX IS HERE
-            "env": "python",
-            "repo": "https://github.com/hilltopcurry-star/agent50-supreme-web", 
-            "branch": "main",
             "buildCommand": "pip install -r requirements.txt",
             "startCommand": "gunicorn app:app",
-            "plan": "free"
+            "plan": "free",
+            "env": "python"
         }
     }
 
@@ -681,10 +681,10 @@ def phase_deploy_render(project_name):
         if response.status_code == 201 or response.status_code == 200:
             data = response.json()
             print(f"  [SUCCESS] 🚀 DEPLOYMENT STARTED!")
-            print(f"  [LINK] App will be live here: {data.get('service', {}).get('serviceUrl', 'Check Dashboard')}")
-            # Agar URL nahi mila, to ye print karega:
-            if 'serviceUrl' not in data.get('service', {}):
-                print(f"  [INFO] View Dashboard: https://dashboard.render.com")
+            print(f"  [LINK] App will be live here: {data.get('serviceUrl', 'Check Dashboard')}")
+            # Agar URL response mein seedha na ho:
+            if 'serviceUrl' not in data:
+                 print(f"  [INFO] App URL available on Render Dashboard.")
         else:
             print(f"  [FAIL] Render refused: {response.text}")
     except Exception as e:
@@ -695,14 +695,12 @@ def run_agent():
     print("      AGENT 50: SUPREME ARCHITECT      ")
     print("="*40)
 
-    # --- FIX STARTS HERE (EOF ERROR FIX) ---
     if len(sys.argv) > 1:
         NAME = sys.argv[1].strip()
         print(f"  [INFO] Project Name from CLI: {NAME}")
     else:
         NAME = "supreme_delivery_app"
         print(f"  [AUTO] No input detected. Using default name: {NAME}")
-    # --- FIX ENDS HERE ---
 
     TYPE = "food_delivery"
     
