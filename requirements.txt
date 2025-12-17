@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-Cors
+requests
+flask-migrate
+flask-bootstrap4
+gunicorn
+flask-socketio
+eventlet
