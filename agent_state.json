@@ -1,0 +1,66 @@
+{
+    "project_name": "VICTORY_APP",
+    "phase": "DEPLOY_PREP",
+    "files_plan": [
+        {
+            "filename": "config.py",
+            "role": "Config keys: SECRET_KEY, SQLALCHEMY_DATABASE_URI, JWT_SECRET_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET."
+        },
+        {
+            "filename": "extensions.py",
+            "role": "Initialize plugins: db, migrate, jwt, cors, socketio."
+        },
+        {
+            "filename": "models.py",
+            "role": "\n                Define Models based on Developer Specs:\n                - User: id, username, email, password_hash, role, lat, lng, is_available.\n                - Product: id, name, price, stock_quantity, description.\n                - Order: id, status, total_amount, delivery_fee, delivery_lat, delivery_lng.\n                - Transaction: stripe_payment_intent_id, amount, status.\n                - InventoryLog: product_id, quantity_change, reason.\n                - OrderStateChange: from_state, to_state, changed_by.\n                - Cart & CartItem: Session based shopping cart.\n                "
+        },
+        {
+            "filename": "routes.py",
+            "role": "Main Web Routes using StateMachine and CartManager."
+        },
+        {
+            "filename": "app.py",
+            "role": "\n                Main Entry Point:\n                - Init socketio via socketio_handler.init_socketio(app).\n                - Register all Blueprints.\n                - Import 'socketio_handler' and 'payment_handler'.\n                - CRITICAL: Run using socketio.run(app) instead of app.run().\n                "
+        },
+        {
+            "filename": "payment_handler.py",
+            "role": "\n                Implement Class PaymentManager as per developer specs:\n                - create_checkout_session(order_id, user_id)\n                - handle_webhook(payload, sig_header)\n                - Blueprint: payment_bp (prefix=/payment).\n                - Routes: /create-checkout/<order_id>, /webhook.\n                NOTE: Use the exact logic provided by the developer for Stripe Sessions.\n                "
+        },
+        {
+            "filename": "cart_manager.py",
+            "role": "\n                Implement Class CartManager:\n                - get_or_create_cart()\n                - add_to_cart()\n                - convert_cart_to_order()\n                "
+        },
+        {
+            "filename": "socketio_handler.py",
+            "role": "\n                Implement Real-Time Logic:\n                - init_socketio(app)\n                - @socketio.on('connect'): Auth check.\n                - @socketio.on('driver_location_update'): Update DB & Emit.\n                - emit_order_status_change()\n                "
+        },
+        {
+            "filename": "state_machine.py",
+            "role": "\n                Implement Class OrderStateMachine:\n                - TRANSITIONS dictionary.\n                - transition(order, new_state).\n                - Logic for inventory hold/release.\n                "
+        },
+        {
+            "filename": "geolocation.py",
+            "role": "\n                Implement Class GeoLocationService:\n                - haversine_distance()\n                - calculate_delivery_fee()\n                - find_nearby_drivers()\n                "
+        },
+        {
+            "filename": "api_routes.py",
+            "role": "Mobile API Routes (Login, Order History)."
+        }
+    ],
+    "generated_files": [
+        "config.py",
+        "extensions.py",
+        "models.py",
+        "routes.py",
+        "app.py",
+        "payment_handler.py",
+        "cart_manager.py",
+        "socketio_handler.py",
+        "state_machine.py",
+        "geolocation.py",
+        "api_routes.py"
+    ],
+    "install_status": "PENDING",
+    "server_status": "PENDING",
+    "errors": []
+}

@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-11-29T06:33:06.867622",
+  "project": "SUPER KING DEEPSEEK",
+  "deployment_status": {
+    "docker": "pending",
+    "database": "pending",
+    "web_server": "completed",
+    "ai_system": "completed",
+    "monitoring": "pending"
+  },
+  "successful_steps": 2,
+  "total_steps": 5,
+  "log_entries": [
+    "[2025-11-29 06:33:00] INFO: Starting quick deployment...",
+    "[2025-11-29 06:33:00] INFO: Performing basic checks...",
+    "[2025-11-29 06:33:00] INFO: \u2705 Python: 3.14.0",
+    "[2025-11-29 06:33:00] INFO: Deploying applications...",
+    "[2025-11-29 06:33:00] INFO: Deploying web application...",
+    "[2025-11-29 06:33:03] INFO: \u2705 Web application deployed on port 5000",
+    "[2025-11-29 06:33:03] INFO: \u2705 Main application deployed",
+    "[2025-11-29 06:33:03] INFO: Deploying Super King Dashboard...",
+    "[2025-11-29 06:33:05] INFO: \u2705 Super King Dashboard deployed on port 8000",
+    "[2025-11-29 06:33:05] INFO: \u2705 Super King Dashboard deployed",
+    "[2025-11-29 06:33:05] INFO: Setting up AI systems...",
+    "[2025-11-29 06:33:06] INFO: \u2705 AI/ML packages are installed",
+    "[2025-11-29 06:33:06] INFO: \u2705 DeepSeek API key configured",
+    "[2025-11-29 06:33:06] INFO: Generating deployment report..."
+  ],
+  "access_urls": {
+    "main_app": "http://localhost:5000",
+    "super_dashboard": "http://localhost:8000"
+  }
+}
