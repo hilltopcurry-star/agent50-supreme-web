@@ -2,7 +2,7 @@ import os
 import time
 import json
 import subprocess
-import requests  # <--- [ADDED] Zaroori hai Render se baat karne ke liye
+import requests  # Zaroori hai
 from pathlib import Path
 import sys
 from llm_client import call_llm
@@ -627,7 +627,7 @@ def phase_qa_loop(project_name):
         print(f"  [ERROR] Final check failed: {e}")
 
 # ==========================================
-# 🚀 NEW PHASE: DEPLOYMENT TO RENDER
+# 🚀 NEW PHASE: DEPLOYMENT TO RENDER (FIXED)
 # ==========================================
 def phase_deploy_render(project_name):
     print(f"\n[DEPLOY] PHASE 7: DEPLOYING TO RENDER CLOUD")
@@ -637,21 +637,37 @@ def phase_deploy_render(project_name):
         print("  [ERROR] RENDER_API_KEY not found in Environment Variables.")
         return
 
-    # Render API Details
-    url = "https://api.render.com/v1/services"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Accept": "application/json",
         "Content-Type": "application/json"
     }
 
-    # Data for New Server
+    # 1. FETCH OWNER ID (Ye Missing Tha!)
+    print("  [CONNECT] Fetching Account Owner ID...")
+    owner_id = ""
+    try:
+        owner_res = requests.get("https://api.render.com/v1/owners", headers=headers)
+        if owner_res.status_code == 200:
+            owners = owner_res.json()
+            owner_id = owners[0]['owner']['id']
+            print(f"  [SUCCESS] Owner Identified: {owner_id}")
+        else:
+            print(f"  [ERROR] Could not fetch Owner ID: {owner_res.text}")
+            return
+    except Exception as e:
+        print(f"  [ERROR] Connection failed: {e}")
+        return
+
+    # 2. DEPLOY WITH OWNER ID
+    url = "https://api.render.com/v1/services"
     payload = {
         "serviceDetails": {
             "type": "web_service",
             "name": f"{project_name}-live",
+            "ownerId": owner_id,  # <--- CRITICAL FIX IS HERE
             "env": "python",
-            "repo": "https://github.com/hilltopcurry-star/agent50-supreme-web", # Aapki Repo
+            "repo": "https://github.com/hilltopcurry-star/agent50-supreme-web", 
             "branch": "main",
             "buildCommand": "pip install -r requirements.txt",
             "startCommand": "gunicorn app:app",
@@ -659,13 +675,16 @@ def phase_deploy_render(project_name):
         }
     }
 
-    print(f"  [CONNECT] Contacting Render HQ for {project_name}...")
+    print(f"  [DEPLOY] Launching {project_name} to Production...")
     try:
         response = requests.post(url, json=payload, headers=headers)
         if response.status_code == 201 or response.status_code == 200:
             data = response.json()
             print(f"  [SUCCESS] 🚀 DEPLOYMENT STARTED!")
-            print(f"  [LINK] App will be live here: {data.get('url', 'Check Dashboard')}")
+            print(f"  [LINK] App will be live here: {data.get('service', {}).get('serviceUrl', 'Check Dashboard')}")
+            # Agar URL nahi mila, to ye print karega:
+            if 'serviceUrl' not in data.get('service', {}):
+                print(f"  [INFO] View Dashboard: https://dashboard.render.com")
         else:
             print(f"  [FAIL] Render refused: {response.text}")
     except Exception as e:
@@ -677,16 +696,12 @@ def run_agent():
     print("="*40)
 
     # --- FIX STARTS HERE (EOF ERROR FIX) ---
-    # Humne input() hata diya hai taake Server par crash na ho
-    
     if len(sys.argv) > 1:
         NAME = sys.argv[1].strip()
         print(f"  [INFO] Project Name from CLI: {NAME}")
     else:
-        # AUTOMATIC DEFAULT NAME (No asking)
         NAME = "supreme_delivery_app"
         print(f"  [AUTO] No input detected. Using default name: {NAME}")
-
     # --- FIX ENDS HERE ---
 
     TYPE = "food_delivery"
