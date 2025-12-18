@@ -3,28 +3,30 @@ from flask_login import login_user, logout_user, login_required, current_user
 from extensions import db
 from models import User, Product
 
-# --- YE LINE SABSE ZAROORI HAI (Iske bina error aata hai) ---
+# --- YE DEKHEIN: Pehle Blueprint bana, phir use hoga ---
 routes_bp = Blueprint('main_bp', __name__)
 
 # --- HOMEPAGE ---
 @routes_bp.route('/')
 def index():
     try:
+        # Check agar database khali hai to crash na ho
         products = Product.query.all()
         return render_template('index.html', products=products)
-    except Exception as e:
-        # Agar table nahi bana to crash hone ke bajaye ye dikhaye
-        return "<h1>Database Setup in Progress... Refresh in 10 seconds.</h1>"
+    except:
+        return "<h1>Database ban raha hai... 10 second baad refresh karein.</h1>"
 
-# --- LOGIN ROUTE ---
+# --- LOGIN ROUTE (Fixed) ---
 @routes_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
         
+        # User dhoondo
         user = User.query.filter_by(username=username).first()
         
+        # Agar user mil gaya aur password sahi hai
         if user and user.check_password(password):
             login_user(user)
             return redirect(url_for('main_bp.dashboard'))
@@ -33,26 +35,25 @@ def login():
             
     return render_template('login.html')
 
-# --- ADMIN CREATE & DEBUG ROUTE ---
+# --- CREATE ADMIN (Smart Way) ---
 @routes_bp.route('/create-admin')
 def create_admin():
     try:
-        # Check agar admin pehle se hai
+        # Check karein agar admin pehle se hai
         existing_user = User.query.filter_by(username='admin').first()
         if existing_user:
             return "⚠️ Admin pehle se mojood hai! Login karein: admin / pass123"
 
-        # Naya User Banayen
-        new_user = User(username='admin', email='admin@example.com')
-        new_user.set_password('pass123')
-        
-        db.session.add(new_user)
+        # Naya Admin banayen
+        user = User(username='admin', email='admin@example.com')
+        user.set_password('pass123')
+        db.session.add(user)
         db.session.commit()
         
-        return "✅ SUCCESS: User Created! Go to /login and use: admin / pass123"
-
+        return "✅ User Created Successfully! Ab Login page par jayen."
+        
     except Exception as e:
-        return f"🔥 ERROR: {str(e)}"
+        return f"🔥 Error: {str(e)}"
 
 # --- DASHBOARD ---
 @routes_bp.route('/dashboard')
