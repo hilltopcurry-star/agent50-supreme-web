@@ -19,12 +19,22 @@
         <div class="login-card">
             <div class="brand">🚀 Supreme Delivery</div>
             <h2 class="text-center mb-4">Login</h2>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}" role="alert">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
             
             <form action="/login" method="POST">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" 
-                           placeholder="Enter email" required>
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" 
+                           placeholder="Enter Username" required>
                 </div>
                 
                 <div class="mb-3">
